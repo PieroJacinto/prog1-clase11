@@ -21,20 +21,20 @@ fetch(url)
         let results = data.results;
         let output = '';
 
-        results.forEach(function(character) {
+        for (let i = 0; i < results.length; i++) {
+            let personaje = results[i];
             output += `
                 <article>
-                    <img src="${character.image}" alt="${character.name}" />
-                    <p>Name: ${character.name}</p>
-                    <p>Status: ${character.status}</p>
+                    <img src="${personaje.image}" alt="${personaje.name}" />
+                    <p>Name: ${personaje.name}</p>
+                    <p>Status: ${personaje.status}</p>
                 </article>
             `;
-        });
-
+        }
         // Mostramos los resultados en la sección correspondiente
         searchResultsSection.innerHTML = output;
     })
     .catch(function(error) {
-        console.error('Error fetching the data:', error);
-        searchResultsSection.innerHTML = '<p>Sorry, something went wrong. Please try again later.</p>';
+        console.error('Error en el fetch:', error);
+        searchResultsSection.innerHTML = '<p>Lo siento, algo salio mal! intentalo de nuevo mas tarde.</p>';
     });
